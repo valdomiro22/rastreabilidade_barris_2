@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828992093112",
+    "project_id": "rastreabilidade-barris-2",
+    "storage_bucket": "rastreabilidade-barris-2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828992093112:android:84cdea97e15a6f8d026d4d",
+        "android_client_info": {
+          "package_name": "com.santos.valdomiro.rastreabilidade_barris"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDGm4LbTOm4aBC2_akDezg0mD1dtEfg6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
