@@ -6,26 +6,18 @@ class LinhaFormatada extends ConsumerWidget {
   final String valor;
   final TextStyle? valorStyle;
 
-  const LinhaFormatada({
-    super.key,
-    required this.valor,
-    this.valorStyle,
-  });
+  const LinhaFormatada({super.key, required this.valor, this.valorStyle});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      children: [
-        Text(
-          valor,
-          style: valorStyle,
-        ),
-      ],
-    );
+    return Row(children: [Text(valor, style: valorStyle)]);
   }
 }
 
-@Preview(name: 'Linha Formatada') 
+@Preview(name: 'Linha Formatada')
 Widget visualizador() {
-  return const LinhaFormatada(valor: 'Titulo', valorStyle: TextStyle(color: Colors.amberAccent, fontWeight: FontWeight.bold),);
+  return const LinhaFormatada(
+    valor: 'Titulo',
+    valorStyle: TextStyle(color: Colors.amberAccent, fontWeight: FontWeight.bold),
+  );
 }

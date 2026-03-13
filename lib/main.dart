@@ -1,21 +1,30 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:rastreabilidade_barris/home_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rastreabilidade_barris/firebase_options.dart';
+import 'package:rastreabilidade_barris/navigate/app_navigate.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(ProviderScope(child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(appNavigation);
+
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomeScreen(),
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
   }
