@@ -282,6 +282,48 @@ final class UsuarioStorageDatasourceProvider
 String _$usuarioStorageDatasourceHash() =>
     r'ed7fd67c872aef715d7f69c6240dd53510b2c1da';
 
+@ProviderFor(gradeDatasource)
+final gradeDatasourceProvider = GradeDatasourceProvider._();
+
+final class GradeDatasourceProvider
+    extends
+        $FunctionalProvider<GradeDatasource, GradeDatasource, GradeDatasource>
+    with $Provider<GradeDatasource> {
+  GradeDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'gradeDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$gradeDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<GradeDatasource> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  GradeDatasource create(Ref ref) {
+    return gradeDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GradeDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GradeDatasource>(value),
+    );
+  }
+}
+
+String _$gradeDatasourceHash() => r'd31bd80e76f2c9fc2b7e10a7678bcba08afdc45f';
+
 @ProviderFor(usuarioRepository)
 final usuarioRepositoryProvider = UsuarioRepositoryProvider._();
 
@@ -417,3 +459,45 @@ final class UsuarioStorageRepositoryProvider
 
 String _$usuarioStorageRepositoryHash() =>
     r'c76b10e7823653ab121970654c63b49f105223c3';
+
+@ProviderFor(gradeRepository)
+final gradeRepositoryProvider = GradeRepositoryProvider._();
+
+final class GradeRepositoryProvider
+    extends
+        $FunctionalProvider<GradeRepository, GradeRepository, GradeRepository>
+    with $Provider<GradeRepository> {
+  GradeRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'gradeRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$gradeRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<GradeRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  GradeRepository create(Ref ref) {
+    return gradeRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GradeRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GradeRepository>(value),
+    );
+  }
+}
+
+String _$gradeRepositoryHash() => r'282a6c7e5cb6c8854f842be09aa0fe40ece169ff';

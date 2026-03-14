@@ -2,6 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/data/datasource/usuario_datasource.dart';
+import 'package:rastreabilidade_barris/features/grades/data/datasources/grade_datasource.dart';
+import 'package:rastreabilidade_barris/features/grades/data/datasources/grade_datasource_impl.dart';
+import 'package:rastreabilidade_barris/features/grades/data/mapper/grade_mapper.dart';
+import 'package:rastreabilidade_barris/features/grades/data/repositories/grade_repository_impl.dart';
+import 'package:rastreabilidade_barris/features/grades/domain/repositories/grade_repository.dart';
 // import 'package:gestao_producao_chopp/features/barril/data/datasource/barrio_datasource_impl.dart';
 // import 'package:gestao_producao_chopp/features/barril/data/datasource/barril_datasource.dart';
 // import 'package:gestao_producao_chopp/features/barril/data/repositories/barril_repository_impl.dart';
@@ -83,11 +88,11 @@ UsuarioStorageDatasource usuarioStorageDatasource(Ref ref) {
   return UsuarioStorageDatasourceImpl(storage);
 }
 
-// @riverpod
-// GradeDatasource gradeDatasource(Ref ref) {
-//   final firestore = ref.watch(firebaseFirestoreProvider);
-//   return GradeDatasourceImpl(firestore);
-// }
+@riverpod
+GradeDatasource gradeDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return GradeDatasourceImpl(firestore);
+}
 
 // @riverpod
 // ProducaoDatasource producaoDatasource(Ref ref) {
@@ -144,12 +149,12 @@ UsuarioStorageRepository usuarioStorageRepository(Ref ref) {
   return UsuarioStorageRepositoryImpl(datasource);
 }
 
-// @riverpod
-// GradeRepository gradeRepository(Ref ref) {
-//   final dataSource = ref.watch(gradeDatasourceProvider);
-//   final mapper = GradeMapper();
-//   return GradeRepositoryImpl(dataSource, mapper);
-// }
+@riverpod
+GradeRepository gradeRepository(Ref ref) {
+  final dataSource = ref.watch(gradeDatasourceProvider);
+  final mapper = GradeMapper();
+  return GradeRepositoryImpl(dataSource, mapper);
+}
 
 // @riverpod
 // ProducaoRepository producaoRepository(Ref ref) {

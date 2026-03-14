@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rastreabilidade_barris/core/common/screens/splashscreen/splash_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/logar/logar_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/recuperarsenha/recuperar_senha_screen.dart';
+import 'package:rastreabilidade_barris/features/grades/presentation/screens/adicionar_grade/adicionar_grade_screen.dart';
+import 'package:rastreabilidade_barris/features/grades/presentation/screens/lista_grades/lista_grades_screen.dart';
 import 'package:rastreabilidade_barris/home_screen.dart';
 import 'app_routes_names.dart';
 
@@ -15,8 +16,8 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.splash, builder: (context, state) => SplashScreen()),
     GoRoute(path: AppRoutesNames.recuperarSenha, builder: (context, state) => RecuperarSenhaScreen(),),
     GoRoute(path: AppRoutesNames.configuracoesUsuario, builder: (context, state) => ConfiguracoesUsuarioScreen(),),
-    // GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
-    // GoRoute(path: AppRoutesNames.adicionarGrade, builder: (context, state) => AdicionarGradeScreen(),),
+    GoRoute(path: AppRoutesNames.listaGrades, builder: (context, state) => ListaGradesScreen()),
+    GoRoute(path: AppRoutesNames.adicionarGrade, builder: (context, state) => AdicionarGradeScreen(),),
     // GoRoute(path: AppRoutesNames.adicionarProduto, builder: (context, state) => AdicionarProdutoScreen(),),
     // GoRoute(path: AppRoutesNames.adicionarBarril, builder: (context, state) => AdicionarBarrilScreen(),),
     // GoRoute(path: AppRoutesNames.listaBarris, builder: (context, state) => ListaTipoBarrilScreen()),
