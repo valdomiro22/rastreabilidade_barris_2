@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/adicionar_nota_widget.dart';
 
 import '../../../../../core/common/widgets/app_drawer.dart';
 import '../../../../../core/constants/app_dimens.dart';
@@ -107,7 +108,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ContainerProducaoHorariaWidget(producao: producao),
 
             // Botões de codigos
-            ElevatedButton(onPressed: () => context.push(AppRoutesNames.inserirAnotacao, extra: producao), child: Text('Adicionar'))
+            // ElevatedButton(onPressed: () => context.push(AppRoutesNames.inserirAnotacao, extra: producao), child: Text('Adicionar'))
+            const SizedBox(height: 20),
+            const SizedBox(height: 20),
+            AdicionarNotaWidget(producao: producao),
           ],
         ),
       ),
