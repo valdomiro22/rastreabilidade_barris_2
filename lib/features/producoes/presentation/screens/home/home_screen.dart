@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/anotacao_notifier.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/adicionar_nota_widget.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/cabecalho_contador_anotacoes.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/item_anotacao_widget.dart';
 
 import '../../../../../core/common/widgets/app_drawer.dart';
 import '../../../../../core/constants/app_dimens.dart';
 import '../../../../../navigate/app_routes_names.dart';
 import '../../../domain/entities/producao_entity.dart';
 import '../../providers/buscar_producao_notifier.dart';
-import '../../widgets/cabecalho_home_widget.dart';
-import '../../widgets/container_producao_horaria_widget.dart';
-import '../../widgets/container_status_producao.dart';
-import '../../widgets/selecao_de_turno_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   final String gradeId;
@@ -66,7 +65,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ],
       ),
       drawer: AppDrawer(),
-      body: SafeArea(
+      body: Container(
         child: producaoState.when(
           loading: () => Center(child: CircularProgressIndicator()),
           error: (error, stackTrace) => Center(child: Text('Erro: $error')),
@@ -84,32 +83,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     required BuildContext context,
     required ({String producaoId, String? gradeId}) parametros,
   }) {
+    final contadorState = ref.watch(anotacaoProvider(producaoId: producao.id!));
+
     return SafeArea(
-      child: SingleChildScrollView(
+      child: Container(
         padding: EdgeInsets.all(AppDimens.paddingPagina),
         child: Column(
           children: [
             // Cabeçalho
-            GestureDetector(
-              onTap: () => context.push(AppRoutesNames.statusProducao, extra: parametros),
-              child: CabecalhoHomeWidget(producao: producao),
+            CabecalhoContadorAnotacoes(qt: 293),
+            const SizedBox(height: 16),
+
+            Expanded(
+              child: contadorState.when(
+                error: (error, stackTrace) => Center(child: Text('Erro: $error')),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                data: (lista) {
+                  return ListView.builder(
+                    itemCount: lista.length,
+                    itemBuilder: (context, index) {
+                      return ItemAnotacaoWidget(anotacao: lista[index]);
+                    },
+                  );
+                },
+              ),
             ),
-            const SizedBox(height: 16),
-
-            ContainerStatusProducao(producao: producao),
-            const SizedBox(height: 16),
-
-            // Monitoramento de volume
-
-            SelecaoDeTurnoWidget(producaoId: widget.producaoId),
-            const SizedBox(height: 8),
-
-            // Produção horária
-            ContainerProducaoHorariaWidget(producao: producao),
 
             // Botões de codigos
-            // ElevatedButton(onPressed: () => context.push(AppRoutesNames.inserirAnotacao, extra: producao), child: Text('Adicionar'))
-            const SizedBox(height: 20),
             const SizedBox(height: 20),
             AdicionarNotaWidget(producao: producao),
           ],

@@ -1,3 +1,5 @@
+// import '' as dev;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../core/error/exception.dart';
@@ -70,11 +72,13 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
   Future<List<AnotacaoModel>> getAllAnotacoes({
     required String producaoId,
   }) async {
+
+    // dev.log('producaoId recebido: $producaoId');
+
     try {
       final snapshot = await _firestore
           .collection(_anotacoesCollection)
-          .doc(producaoId)
-          .collection(_anotacoesCollection)
+          .where('producaoId', isEqualTo: producaoId)
           .orderBy('data', descending: true)
           .orderBy('horario', descending: true)
           .get();
@@ -87,6 +91,10 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
         case 'permission-denied':
           throw FirestoreException('Permissão negada para ler os anotacao');
         case 'unavailable':
+        case 'failed-precondition':
+          throw FirestoreException(
+            'Índice composto necessário para esta consulta. Crie o índice no Firebase Console usando o link do log: ${e.message}',
+          );
         case 'deadline-exceeded':
           throw NetworkException('Problema de conexão ou serviço indisponível');
         case 'resource-exhausted':
