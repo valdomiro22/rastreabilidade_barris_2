@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rastreabilidade_barris/core/theme/app_theme_light.dart';
 import 'package:rastreabilidade_barris/firebase_options.dart';
 import 'package:rastreabilidade_barris/navigate/app_navigate.dart';
 
@@ -21,9 +22,7 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: AppTheme.lightTheme,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
     );

@@ -44,6 +44,18 @@ import '../../../features/autenticacao/data/repository/usuario_storage_repositor
 import '../../../features/autenticacao/domain/repositories/auth_repository.dart';
 import '../../../features/autenticacao/domain/repositories/usuario_repository.dart';
 import '../../../features/autenticacao/domain/repositories/usuario_storage_repository.dart';
+import '../../../features/barril/data/datasource/barril_datasource.dart';
+import '../../../features/barril/data/datasource/barrio_datasource_impl.dart';
+import '../../../features/barril/data/repositories/barril_repository_impl.dart';
+import '../../../features/barril/domain/repositories/tipo_barril_repository.dart';
+import '../../../features/producoes/data/datasource/producao_datasource.dart';
+import '../../../features/producoes/data/datasource/producao_datasource_impl.dart';
+import '../../../features/producoes/data/repository/producao_repository_impl.dart';
+import '../../../features/producoes/domain/repository/producao_repository.dart';
+import '../../../features/produto/data/datasource/produto_datasource.dart';
+import '../../../features/produto/data/datasource/produto_datasource_impl.dart';
+import '../../../features/produto/data/repositories/produto_repository_impl.dart';
+import '../../../features/produto/domain/repositories/produto_repository.dart';
 // import '../../../features/configuracoes/data/datasource/local/configuracoes_local_datasource.dart';
 // import '../../../features/configuracoes/data/datasource/local/configuracoes_local_datasource_impl.dart';
 // import '../../../features/configuracoes/data/datasource/remote/configuracoes_remote_datasource.dart';
@@ -94,23 +106,23 @@ GradeDatasource gradeDatasource(Ref ref) {
   return GradeDatasourceImpl(firestore);
 }
 
-// @riverpod
-// ProducaoDatasource producaoDatasource(Ref ref) {
-//   final firestore = ref.watch(firebaseFirestoreProvider);
-//   return ProducaoDatasourceImpl(firestore);
-// }
+@riverpod
+ProducaoDatasource producaoDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return ProducaoDatasourceImpl(firestore);
+}
 
-// @riverpod
-// BarrilDatasource barrilDatasource(Ref ref) {
-//   final firestore = ref.watch(firebaseFirestoreProvider);
-//   return BarrilDatasourceImpl(firestore);
-// }
+@riverpod
+BarrilDatasource barrilDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return BarrilDatasourceImpl(firestore);
+}
 
-// @riverpod
-// ProdutoDatasource produtoDatasource(Ref ref) {
-//   final firestore = ref.watch(firebaseFirestoreProvider);
-//   return ProdutoDatasourceImpl(firestore);
-// }
+@riverpod
+ProdutoDatasource produtoDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return ProdutoDatasourceImpl(firestore);
+}
 
 // @riverpod
 // ConfiguracoesLocalDatasource configuracoesLocalDatasource(Ref ref) {
@@ -156,23 +168,23 @@ GradeRepository gradeRepository(Ref ref) {
   return GradeRepositoryImpl(dataSource, mapper);
 }
 
-// @riverpod
-// ProducaoRepository producaoRepository(Ref ref) {
-//   final dataSource = ref.watch(producaoDatasourceProvider);
-//   return ProducaoRepositoryImpl(dataSource);
-// }
+@riverpod
+ProducaoRepository producaoRepository(Ref ref) {
+  final dataSource = ref.watch(producaoDatasourceProvider);
+  return ProducaoRepositoryImpl(dataSource);
+}
 
-// @riverpod
-// BarrilRepository barrilRepository(Ref ref) {
-//   final dataSource = ref.watch(barrilDatasourceProvider);
-//   return BarrilRepositoryImpl(dataSource);
-// }
+@riverpod
+BarrilRepository barrilRepository(Ref ref) {
+  final dataSource = ref.watch(barrilDatasourceProvider);
+  return BarrilRepositoryImpl(dataSource);
+}
 
-// @riverpod
-// ProdutoRepository produtoRepository(Ref ref) {
-//   final dataSource = ref.watch(produtoDatasourceProvider);
-//   return ProdutoRepositoryImpl(dataSource);
-// }
+@riverpod
+ProdutoRepository produtoRepository(Ref ref) {
+  final dataSource = ref.watch(produtoDatasourceProvider);
+  return ProdutoRepositoryImpl(dataSource);
+}
 
 // @riverpod
 // ConfiguracoesRepository configuracoesRepository(Ref ref) {

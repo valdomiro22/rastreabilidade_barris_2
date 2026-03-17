@@ -1,0 +1,27 @@
+class BarrilEntity {
+  final String? id;
+  final String nome;
+  final int volume;
+  final bool isDescartavel;
+
+  const BarrilEntity({
+    this.id,
+    required this.nome,
+    required this.volume,
+    required this.isDescartavel,
+  });
+
+  BarrilEntity copyWith({
+    String? id,
+    String? nome,
+    int? volume,
+    bool? isDescartavel,
+  }) {
+    return BarrilEntity(
+      id: id ?? this.id,
+      nome: nome ?? this.nome,
+      volume: volume ?? this.volume,
+      isDescartavel: isDescartavel ?? this.isDescartavel,
+    );
+  }
+}

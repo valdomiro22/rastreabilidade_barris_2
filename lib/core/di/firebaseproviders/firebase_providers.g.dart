@@ -324,6 +324,147 @@ final class GradeDatasourceProvider
 
 String _$gradeDatasourceHash() => r'd31bd80e76f2c9fc2b7e10a7678bcba08afdc45f';
 
+@ProviderFor(producaoDatasource)
+final producaoDatasourceProvider = ProducaoDatasourceProvider._();
+
+final class ProducaoDatasourceProvider
+    extends
+        $FunctionalProvider<
+          ProducaoDatasource,
+          ProducaoDatasource,
+          ProducaoDatasource
+        >
+    with $Provider<ProducaoDatasource> {
+  ProducaoDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'producaoDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$producaoDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ProducaoDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ProducaoDatasource create(Ref ref) {
+    return producaoDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProducaoDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProducaoDatasource>(value),
+    );
+  }
+}
+
+String _$producaoDatasourceHash() =>
+    r'e67a92cff69543db527f9592d51483df86a691cf';
+
+@ProviderFor(barrilDatasource)
+final barrilDatasourceProvider = BarrilDatasourceProvider._();
+
+final class BarrilDatasourceProvider
+    extends
+        $FunctionalProvider<
+          BarrilDatasource,
+          BarrilDatasource,
+          BarrilDatasource
+        >
+    with $Provider<BarrilDatasource> {
+  BarrilDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'barrilDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$barrilDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<BarrilDatasource> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  BarrilDatasource create(Ref ref) {
+    return barrilDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(BarrilDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<BarrilDatasource>(value),
+    );
+  }
+}
+
+String _$barrilDatasourceHash() => r'50be7cf32bdec04010ee8eb1c71c403cb3930e48';
+
+@ProviderFor(produtoDatasource)
+final produtoDatasourceProvider = ProdutoDatasourceProvider._();
+
+final class ProdutoDatasourceProvider
+    extends
+        $FunctionalProvider<
+          ProdutoDatasource,
+          ProdutoDatasource,
+          ProdutoDatasource
+        >
+    with $Provider<ProdutoDatasource> {
+  ProdutoDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'produtoDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$produtoDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ProdutoDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ProdutoDatasource create(Ref ref) {
+    return produtoDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProdutoDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProdutoDatasource>(value),
+    );
+  }
+}
+
+String _$produtoDatasourceHash() => r'8577b15b8cc1fbdbd74e292790021bcc32f2f0ea';
+
 @ProviderFor(usuarioRepository)
 final usuarioRepositoryProvider = UsuarioRepositoryProvider._();
 
@@ -501,3 +642,144 @@ final class GradeRepositoryProvider
 }
 
 String _$gradeRepositoryHash() => r'282a6c7e5cb6c8854f842be09aa0fe40ece169ff';
+
+@ProviderFor(producaoRepository)
+final producaoRepositoryProvider = ProducaoRepositoryProvider._();
+
+final class ProducaoRepositoryProvider
+    extends
+        $FunctionalProvider<
+          ProducaoRepository,
+          ProducaoRepository,
+          ProducaoRepository
+        >
+    with $Provider<ProducaoRepository> {
+  ProducaoRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'producaoRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$producaoRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<ProducaoRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ProducaoRepository create(Ref ref) {
+    return producaoRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProducaoRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProducaoRepository>(value),
+    );
+  }
+}
+
+String _$producaoRepositoryHash() =>
+    r'705f74728e570a602708d96505f5e3920a8a435c';
+
+@ProviderFor(barrilRepository)
+final barrilRepositoryProvider = BarrilRepositoryProvider._();
+
+final class BarrilRepositoryProvider
+    extends
+        $FunctionalProvider<
+          BarrilRepository,
+          BarrilRepository,
+          BarrilRepository
+        >
+    with $Provider<BarrilRepository> {
+  BarrilRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'barrilRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$barrilRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<BarrilRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  BarrilRepository create(Ref ref) {
+    return barrilRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(BarrilRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<BarrilRepository>(value),
+    );
+  }
+}
+
+String _$barrilRepositoryHash() => r'c8e5f5cee7cba19a74eb751870beb3dea17c492b';
+
+@ProviderFor(produtoRepository)
+final produtoRepositoryProvider = ProdutoRepositoryProvider._();
+
+final class ProdutoRepositoryProvider
+    extends
+        $FunctionalProvider<
+          ProdutoRepository,
+          ProdutoRepository,
+          ProdutoRepository
+        >
+    with $Provider<ProdutoRepository> {
+  ProdutoRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'produtoRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$produtoRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<ProdutoRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ProdutoRepository create(Ref ref) {
+    return produtoRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProdutoRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProdutoRepository>(value),
+    );
+  }
+}
+
+String _$produtoRepositoryHash() => r'8594762726427e5809c781708dca0d5e1f800417';

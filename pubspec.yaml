@@ -50,6 +50,7 @@ dependencies:
   # hive_ce_flutter: ^2.0.0
   # fl_chart: ^0.68.0 # Para o grafico de pizza
   share_plus: ^10.0.0  # Para compartilhar coisas
+  fl_chart: ^0.68.0 # Para o grafico de pizza
 
 dev_dependencies:
   flutter_test:
