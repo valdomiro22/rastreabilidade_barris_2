@@ -107,7 +107,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ContainerProducaoHorariaWidget(producao: producao),
 
             // Botões de codigos
-
+            ElevatedButton(onPressed: () => context.push(AppRoutesNames.inserirAnotacao, extra: producao), child: Text('Adicionar'))
           ],
         ),
       ),

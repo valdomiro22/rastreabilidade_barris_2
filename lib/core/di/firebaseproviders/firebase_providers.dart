@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/data/datasources/anotacao_datasource.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/data/datasources/anotacao_datasource_impl.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/data/repositories/anotacao_repository_impl.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/domain/repositories/aotacao_repository.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/data/datasource/usuario_datasource.dart';
 import 'package:rastreabilidade_barris/features/grades/data/datasources/grade_datasource.dart';
 import 'package:rastreabilidade_barris/features/grades/data/datasources/grade_datasource_impl.dart';
@@ -124,6 +128,12 @@ ProdutoDatasource produtoDatasource(Ref ref) {
   return ProdutoDatasourceImpl(firestore);
 }
 
+@riverpod
+AnotacaoDatasource anotacaoDatasource(Ref ref) {
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return AnotacaoDatasourceImpl(firestore);
+}
+
 // @riverpod
 // ConfiguracoesLocalDatasource configuracoesLocalDatasource(Ref ref) {
 //   final box = ref.watch(configuracoesBoxHiveProvider);
@@ -184,6 +194,12 @@ BarrilRepository barrilRepository(Ref ref) {
 ProdutoRepository produtoRepository(Ref ref) {
   final dataSource = ref.watch(produtoDatasourceProvider);
   return ProdutoRepositoryImpl(dataSource);
+}
+
+@riverpod
+AnotacaoRepository anotacaoRepository(Ref ref) {
+  final datasource = ref.watch(anotacaoDatasourceProvider);
+  return AnotacaoRepositoryImpl(datasource);
 }
 
 // @riverpod

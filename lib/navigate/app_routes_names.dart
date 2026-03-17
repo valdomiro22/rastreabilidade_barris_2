@@ -27,4 +27,6 @@ class AppRoutesNames {
   static const String listaBarris = '/lista-barrils';
   static const String listaProdutos = '/lista-produtos';
   static const String calculadoraTempoParadas = '/calcular-tempo-paradas';
+  static const String editarAnotacao = '/adicionar-anotacao';
+  static const String inserirAnotacao = '/inserir-anotacao';
 }

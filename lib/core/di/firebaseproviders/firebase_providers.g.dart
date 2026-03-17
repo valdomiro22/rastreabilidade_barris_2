@@ -465,6 +465,54 @@ final class ProdutoDatasourceProvider
 
 String _$produtoDatasourceHash() => r'8577b15b8cc1fbdbd74e292790021bcc32f2f0ea';
 
+@ProviderFor(anotacaoDatasource)
+final anotacaoDatasourceProvider = AnotacaoDatasourceProvider._();
+
+final class AnotacaoDatasourceProvider
+    extends
+        $FunctionalProvider<
+          AnotacaoDatasource,
+          AnotacaoDatasource,
+          AnotacaoDatasource
+        >
+    with $Provider<AnotacaoDatasource> {
+  AnotacaoDatasourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'anotacaoDatasourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$anotacaoDatasourceHash();
+
+  @$internal
+  @override
+  $ProviderElement<AnotacaoDatasource> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  AnotacaoDatasource create(Ref ref) {
+    return anotacaoDatasource(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AnotacaoDatasource value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AnotacaoDatasource>(value),
+    );
+  }
+}
+
+String _$anotacaoDatasourceHash() =>
+    r'90418aaaaeb9286d96f8faf1751b0563eac3ce87';
+
 @ProviderFor(usuarioRepository)
 final usuarioRepositoryProvider = UsuarioRepositoryProvider._();
 
@@ -783,3 +831,51 @@ final class ProdutoRepositoryProvider
 }
 
 String _$produtoRepositoryHash() => r'8594762726427e5809c781708dca0d5e1f800417';
+
+@ProviderFor(anotacaoRepository)
+final anotacaoRepositoryProvider = AnotacaoRepositoryProvider._();
+
+final class AnotacaoRepositoryProvider
+    extends
+        $FunctionalProvider<
+          AnotacaoRepository,
+          AnotacaoRepository,
+          AnotacaoRepository
+        >
+    with $Provider<AnotacaoRepository> {
+  AnotacaoRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'anotacaoRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$anotacaoRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<AnotacaoRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  AnotacaoRepository create(Ref ref) {
+    return anotacaoRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AnotacaoRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AnotacaoRepository>(value),
+    );
+  }
+}
+
+String _$anotacaoRepositoryHash() =>
+    r'0a30ac364a48c45012b482c44976dacfd677e174';

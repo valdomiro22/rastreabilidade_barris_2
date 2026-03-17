@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rastreabilidade_barris/core/common/screens/splashscreen/splash_screen.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacoes_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/logar/logar_screen.dart';
@@ -16,6 +17,7 @@ import '../features/barril/presentation/screens/adicionartipobarril/adicionar_ti
 import '../features/barril/presentation/screens/listatipobarril/lista_tipo_barril_screen.dart';
 import '../features/grades/domain/entities/grade_entity.dart';
 import '../features/grades/presentation/screens/editar_grade/editar_grade_screen.dart';
+import '../features/producoes/domain/entities/producao_entity.dart';
 import '../features/producoes/presentation/screens/adicionar_producao/adicionar_producao_screen.dart';
 import '../features/producoes/presentation/screens/home/home_screen.dart';
 import '../features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
@@ -206,6 +208,18 @@ class AppRoutes {
     //     return SimularFimProducaoScreen(producao: producao);
     //   },
     // ),
+
+    // Inserir Anotação
+    GoRoute(
+      path: AppRoutesNames.inserirAnotacao,
+      builder: (context, state) {
+        final producao = state.extra as ProducaoEntity?;
+        if (producao == null) {
+          return const Scaffold(body: Center(child: Text('Item não encontrado - Editar Grade')));
+        }
+        return InserirAnotacoesScreen(producao: producao);
+      },
+    ),
 
     // // Editar Produção
     // GoRoute(
