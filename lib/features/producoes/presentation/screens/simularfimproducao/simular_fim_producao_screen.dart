@@ -39,7 +39,7 @@ class _StatusProducaoScreenState extends ConsumerState<SimularFimProducaoScreen>
         error: (error, stackTrace) => Center(child: Text('Produção não encontrada')),
         loading: () => Center(child: CircularProgressIndicator()),
         data: (producao) {
-          final produto = ref.produtoPorId(producao!.produtoId);
+          final produto = ref.produtoPorId(producao.produtoId);
           final barril = ref.barrilPorId(producao.barrilId);
           final volumeNecessario = ProducaoUtil.calcularVolumeNecessario(
             producao.quantidadePendente,

@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/domain/enums/tipo_codigo.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/inseriranotacoes/adicionar_anotacao_notifier.dart';
-import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/stream_anotacao_notifier.dart';
-import 'package:rastreabilidade_barris/features/producoes/presentation/providers/producao_notifier.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -25,18 +23,8 @@ class InserirAnotacoesScreen extends ConsumerStatefulWidget {
 
 class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen> {
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     ref.read(anotacaoProvider(producaoId: widget.producao.id!));
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
-    final producaoId = widget.producao.id;
-    final adicionarState = ref.watch(adicionarAnotacaoProvider);
     final adicionarNotifier = ref.watch(adicionarAnotacaoProvider.notifier);
     // final anotacaoState = ref.watch(anotacaoProvider(producaoId: widget.producao.id!));
 
@@ -159,10 +147,10 @@ class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen>
                         //     .buscarAll(gradeId: gradeId, producaoId: producaoId);
 
                         // Quantidades na produção
-                        final qtProduzida = widget.producao.quantidadeProduzida + 1;
-                        final producaoAtualizada = widget.producao.copyWith(
-                          quantidadeProduzida: qtProduzida,
-                        );
+                        // final qtProduzida = widget.producao.quantidadeProduzida + 1;
+                        // final producaoAtualizada = widget.producao.copyWith(
+                        //   quantidadeProduzida: qtProduzida,
+                        // );
 
 
                         // await ref

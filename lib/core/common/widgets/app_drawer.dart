@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:path/path.dart' as usuario;
+import 'package:rastreabilidade_barris/features/autenticacao/presentation/deslogar/deslogar_notifier.dart';
 
-import '../../../features/autenticacao/domain/entities/usuario_entity.dart';
 import '../../../features/autenticacao/presentation/buscarusuario/buscar_usuario_notifier.dart';
 import '../../../features/autenticacao/presentation/widgets/foto_perfil_wieget.dart';
 import '../../../navigate/app_routes_names.dart';
@@ -18,16 +17,7 @@ class AppDrawer extends ConsumerStatefulWidget {
 
 class _AppDrawerState extends ConsumerState<AppDrawer> {
   @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      ref.read(buscarUsuarioProvider.notifier);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // final state = ref.watch(homeProvider);
     final usuarioState = ref.watch(buscarUsuarioProvider);
 
     return Drawer(
@@ -35,54 +25,60 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(top: 32, left: 10, bottom: 8),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.transparent, width: 0.0)),
-              color: AppColors.red900,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Center(
-                  child: Stack(
-                    children: <Widget>[
-                      FotoPerfilWieget(imageUrl: 'usuario.fo', tamanho: 100),
-                    ],
-                  ),
+          usuarioState.when(
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (e, st) => Center(child: Text('Erro: $e')),
+            data: (usuario) {
+              return Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(top: 32, left: 10, bottom: 8),
+                decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(color: Colors.transparent, width: 0.0)),
+                  color: AppColors.red900,
                 ),
-                const SizedBox(height: 8),
-                Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'nome',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text('email', style: TextStyle(color: Colors.white)),
-                      ],
+                    Center(
+                      child: Stack(
+                        children: <Widget>[
+                          FotoPerfilWieget(imageUrl: usuario.urlFotoPerfil, tamanho: 100),
+                        ],
+                      ),
                     ),
-                    Spacer(),
-                    IconButton(
-                      onPressed: () {
-                        context.pop();
-                        context.push(AppRoutesNames.configuracoesApp);
-                      },
-                      icon: Icon(Icons.settings, color: Colors.white),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              usuario.nomeCompleto,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(usuario.email, style: TextStyle(color: Colors.white)),
+                          ],
+                        ),
+                        Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            context.pop();
+                            context.push(AppRoutesNames.configuracoesUsuario);
+                          },
+                          icon: Icon(Icons.settings, color: Colors.white),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              );
+            },
           ),
           // Divider(),
           SizedBox(height: 8),
@@ -118,13 +114,12 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
               context.push(AppRoutesNames.calculadoraTempoParadas);
             },
           ),
-          // TODO - Adicionar Produção
           const Divider(),
           ListTile(
             leading: const Icon(Icons.exit_to_app, color: AppColors.red900),
             title: const Text('Sair'),
             onTap: () {
-              // ref.read(homeProvider.notifier).deslogar();
+              ref.read(deslogarProvider.notifier).deslogar();
             },
           ),
         ],

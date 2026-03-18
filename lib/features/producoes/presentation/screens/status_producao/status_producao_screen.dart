@@ -42,7 +42,7 @@ class _StatusProducaoScreenState extends ConsumerState<StatusProducaoScreen> {
           _produzido = double.parse(producao.value!.quantidadeProduzida.toString());
           _pendente = double.parse(producao.value!.quantidadePendente.toString());
 
-          final produto = ref.produtoPorId(data!.produtoId);
+          final produto = ref.produtoPorId(data.produtoId);
           final barril = ref.barrilPorId(data.barrilId);
 
           return SingleChildScrollView(

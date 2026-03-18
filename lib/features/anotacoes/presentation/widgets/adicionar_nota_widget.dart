@@ -96,10 +96,10 @@ class AdicionarNotaWidget extends ConsumerWidget {
                         //     .buscarAll(gradeId: gradeId, producaoId: producaoId);
 
                         // Quantidades na produção
-                        final qtProduzida = producao.quantidadeProduzida + 1;
-                        final producaoAtualizada = producao.copyWith(
-                          quantidadeProduzida: qtProduzida,
-                        );
+                        // final qtProduzida = producao.quantidadeProduzida + 1;
+                        // final producaoAtualizada = producao.copyWith(
+                        //   quantidadeProduzida: qtProduzida,
+                        // );
 
                         // await ref
                         //     .read(listaProducoesProvider.notifier)

@@ -12,6 +12,8 @@ class DeslogarNotifier extends _$DeslogarNotifier {
   Future<void> deslogar() async {
     state = const AsyncLoading();
 
+    print('\n\nDeslogar notifier.');
+
     state = await AsyncValue.guard(() async {
       final useCase = ref.read(deslogarUseCaseProvider);
       final result = await useCase();

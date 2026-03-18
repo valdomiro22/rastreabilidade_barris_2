@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/domain/entity/anotacao_entity.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/stream_anotacao_notifier.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/adicionar_nota_widget.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/cabecalho_contador_anotacoes.dart';
@@ -84,7 +85,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     required ({String producaoId, String? gradeId}) parametros,
   }) {
     final anotacoesState = ref.watch(streamAnotacaoProvider(producaoId: producao.id!));
-    final contador = anotacoesState.requireValue.length;
+    final contador = anotacoesState.valueOrNull?.length ?? 0;
 
     return SafeArea(
       child: Container(
@@ -118,4 +119,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
     );
   }
+}
+
+extension on AsyncValue<List<AnotacaoEntity>> {
+  get valueOrNull => null;
 }

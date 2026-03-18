@@ -9,7 +9,6 @@ import 'app_routes_names.dart';
 final appNavigation = Provider<GoRouter>((ref) {
   final router = GoRouter(
     initialLocation: AppRoutesNames.splash,
-    // initialLocation: AppRoutesNames.login,
 
     redirect: (context, state) {
       final authState = ref.read(navigateAuthState);
@@ -31,7 +30,7 @@ final appNavigation = Provider<GoRouter>((ref) {
       final isLogado = authState.value != null;
 
       if (isGoingToSplash) return isLogado ? AppRoutesNames.listaGrades : AppRoutesNames.login;
-      // if (isGoingToSplash) return isLogado ? AppRoutesNames.home : AppRoutesNames.login;
+      if (isGoingToSplash) return isLogado ? AppRoutesNames.home : AppRoutesNames.login;
 
       if (!isLogado) {
         if (!isGoingToLogin && !isGoingToCadastro && !isGoingToRecuperarSenha) {
@@ -39,8 +38,7 @@ final appNavigation = Provider<GoRouter>((ref) {
         }
       } else {
         if (isGoingToLogin || isGoingToCadastro || isGoingToRecuperarSenha) {
-          return AppRoutesNames.listaGrades;
-          // return AppRoutesNames.home;
+          return AppRoutesNames.home;
         }
       }
 

@@ -41,7 +41,7 @@ final class DeslogarNotifierProvider
   }
 }
 
-String _$deslogarNotifierHash() => r'70560f60b2e6c00a935c38015f5550a6c6774259';
+String _$deslogarNotifierHash() => r'fd9f4b4edf27b5a6a8bcd1af3585113539e47c2e';
 
 abstract class _$DeslogarNotifier extends $Notifier<AsyncValue<dynamic>> {
   AsyncValue<dynamic> build();

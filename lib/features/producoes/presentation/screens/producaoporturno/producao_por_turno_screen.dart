@@ -36,7 +36,7 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
                 SelecaoDeTurnoWidget(producaoId: widget.producaoId),
                 const SizedBox(height: 8),
 
-                ContainerProducaoHorariaWidget(producao: producao!),
+                ContainerProducaoHorariaWidget(producao: producao),
               ],
             ),
           );
