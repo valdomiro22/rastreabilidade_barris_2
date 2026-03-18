@@ -29,4 +29,5 @@ class AppRoutesNames {
   static const String calculadoraTempoParadas = '/calcular-tempo-paradas';
   static const String editarAnotacao = '/adicionar-anotacao';
   static const String inserirAnotacao = '/inserir-anotacao';
+  static const String insertBarrilProduto = '/add-barril-produto';
 }

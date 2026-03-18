@@ -44,7 +44,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         );
         break;
       case 'Configurações':
-        context.push(AppRoutesNames.configuracoesApp);
+        context.push(AppRoutesNames.insertBarrilProduto);
         break;
     }
   }

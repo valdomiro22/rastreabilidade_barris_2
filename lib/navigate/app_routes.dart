@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rastreabilidade_barris/core/common/screens/barrilproduto/adicionar_barri_produto_screen.dart';
 import 'package:rastreabilidade_barris/core/common/screens/splashscreen/splash_screen.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/domain/entity/anotacao_entity.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/editaranotacao/editar_anotacao_screen.dart';
@@ -45,7 +46,7 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.adicionarBarril, builder: (context, state) => AdicionarBarrilScreen(),),
     GoRoute(path: AppRoutesNames.listaBarris, builder: (context, state) => ListaTipoBarrilScreen()),
     GoRoute(path: AppRoutesNames.listaProdutos, builder: (context, state) => ListaProdutoScreen()),
-    // GoRoute(path: AppRoutesNames.configuracoesApp, builder: (context, state) => ConfiguracoesAppScreen()),
+    GoRoute(path: AppRoutesNames.insertBarrilProduto, builder: (context, state) => AdicionarBarriProdutoScreen()),
     // GoRoute(path: AppRoutesNames.inserirNivelBuffer, builder: (context, state) => InserirNivelBufferScreen()),
     // GoRoute(path: AppRoutesNames.calculadoraTempoParadas, builder: (context, state) => CalcularTempoParadaScreen()),
 
