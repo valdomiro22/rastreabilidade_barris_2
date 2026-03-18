@@ -9,11 +9,7 @@ class UpdateAnotacaoUseCase {
 
   UpdateAnotacaoUseCase(this._repository);
 
-  Future<Either<Failure, Unit>> call({
-    required AnotacaoEntity anotacao,
-  }) async {
-    return await _repository.updateAnotacao(
-      anotacao: anotacao,
-    );
+  Future<Either<Failure, Unit>> call({required AnotacaoEntity anotacao}) async {
+    return await _repository.updateAnotacao(anotacao: anotacao);
   }
 }

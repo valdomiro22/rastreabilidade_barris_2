@@ -1,4 +1,4 @@
-// import '' as dev;
+import 'dart:developer' as dev;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -16,8 +16,7 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
   @override
   Future<void> insertAnotacao({required AnotacaoModel anotacao}) async {
     try {
-      final anotacaoId = anotacao.id;
-      await _firestore.collection(_anotacoesCollection).doc(anotacaoId).set(anotacao.toJson());
+      await _firestore.collection(_anotacoesCollection).doc(anotacao.id).set(anotacao.toJson());
     } on FirebaseException catch (e) {
       switch (e.code) {
         case 'permission-denied':
@@ -69,10 +68,7 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
   }
 
   @override
-  Future<List<AnotacaoModel>> getAllAnotacoes({
-    required String producaoId,
-  }) async {
-
+  Future<List<AnotacaoModel>> getAllAnotacoes({required String producaoId}) async {
     // dev.log('producaoId recebido: $producaoId');
 
     try {
@@ -114,14 +110,9 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
   }
 
   @override
-  Future<AnotacaoModel?> getAnotacao({
-    required String anotacaoId,
-  }) async {
+  Future<AnotacaoModel?> getAnotacao({required String anotacaoId}) async {
     try {
-      final snapshot = await _firestore
-          .collection(_anotacoesCollection)
-          .doc(anotacaoId)
-          .get();
+      final snapshot = await _firestore.collection(_anotacoesCollection).doc(anotacaoId).get();
 
       if (!snapshot.exists) return null;
 
@@ -150,15 +141,15 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
   }
 
   @override
-  Future<void> updateAnotacao({
-    required AnotacaoModel anotacao,
-  }) async {
+  Future<void> updateAnotacao({required AnotacaoModel anotacao}) async {
     try {
-      await _firestore
-          .collection(_anotacoesCollection)
-          .doc(anotacao.id)
-          .set(anotacao.toJson());
+      dev.log('chegou no datasource. id: ${anotacao.id}');
+      dev.log('Payload da atualização: ${anotacao.toJson()}');
+      await _firestore.collection(_anotacoesCollection).doc(anotacao.id).update(anotacao.toJson());
+      dev.log('chegou no datasource. Deu certo');
+      // await _firestore.collection(_anotacoesCollection).doc(anotacaoId).set(anotacao.toJson());
     } on FirebaseException catch (e) {
+      dev.log('chegou no datasource. Deu erro no firebase');
       switch (e.code) {
         case 'permission-denied':
           throw FirestoreException('Permissão negada para atualizar esta anotacao');
@@ -177,6 +168,7 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
           throw FirestoreException(e.message ?? 'Erro ao atualizar anotacao: ${e.code}');
       }
     } catch (e) {
+      dev.log('chegou no datasource. Deu erro qualquer');
       throw UnexpectedException('Erro inesperado ao atualizar anotacao: ${e.toString()}');
     }
   }

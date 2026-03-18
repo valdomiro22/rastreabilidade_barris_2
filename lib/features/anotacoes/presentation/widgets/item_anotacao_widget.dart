@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/anotacao_notifier.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/string_util.dart';
@@ -31,7 +32,7 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(4)
+        borderRadius: BorderRadius.circular(4),
       ),
       child: Row(
         children: [
@@ -43,69 +44,67 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
           Text(horario),
           const SizedBox(width: 10),
 
-          BotaoEditarDeletar(
-            cor: Colors.red,
-            altura: 30,
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Row(
-                      children: [
-                        Icon(Icons.warning, color: AppColors.primaryRed),
-                        SizedBox(width: 16),
-                        Text('Alerta!', style: TextStyle(color: AppColors.primaryDarkText)),
-                      ],
-                    ),
-                    content: Text('Quer mesmo deletar?'),
-                    actions: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.greenAccent),
-                        child: Text('Cancelar', style: TextStyle(color: Colors.black)),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          // await anotacaoVm.deletarAnotacao(anotacao);
-                          final gradeId = widget.anotacao.gradeId;
-                          final producaoId = widget.anotacao.producaoId;
-                          final anotacaoId = widget.anotacao.id;
-
-                          if (anotacaoId != null) {
-                            // buscarNotifier.deletar(
-                            //     gradeId: gradeId,
-                            //     producaoId: producaoId,
-                            //     anotacaoId: anotacaoId,
-                            // );
-                          }
-
-
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Deletar', style: TextStyle(color: Colors.red)),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            texto: 'Deletar',
-          ),
+          _deletarAnotacao(),
           const SizedBox(width: 4),
 
-          BotaoEditarDeletar(
-            cor: Colors.blue,
-            altura: 30,
-            onPressed: () {
-              context.push(AppRoutesNames.editarAnotacao, extra: anotacao);
-            },
-            texto: 'Editar',
-          ),
+          _editarAnotacao(anotacao: anotacao),
         ],
       ),
+    );
+  }
+
+  Widget _deletarAnotacao() {
+    return BotaoEditarDeletar(
+      cor: Colors.red,
+      altura: 30,
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Row(
+                children: [
+                  Icon(Icons.warning, color: AppColors.primaryRed),
+                  SizedBox(width: 16),
+                  Text('Alerta!', style: TextStyle(color: AppColors.primaryDarkText)),
+                ],
+              ),
+              content: Text('Quer mesmo deletar?'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.greenAccent),
+                  child: Text('Cancelar', style: TextStyle(color: Colors.black)),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    final anotacaoId = widget.anotacao.id!;
+                    final producaoId = widget.anotacao.producaoId;
+
+                    ref.watch(anotacaoProvider(producaoId: producaoId).notifier).delete(anotacaoId: anotacaoId);
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Deletar', style: TextStyle(color: Colors.red)),
+                ),
+              ],
+            );
+          },
+        );
+      },
+      texto: 'Deletar',
+    );
+  }
+
+  Widget _editarAnotacao({required AnotacaoEntity anotacao}) {
+    return BotaoEditarDeletar(
+      cor: Colors.blue,
+      altura: 30,
+      onPressed: () {
+        context.push(AppRoutesNames.editarAnotacao, extra: anotacao);
+      },
+      texto: 'Editar',
     );
   }
 }

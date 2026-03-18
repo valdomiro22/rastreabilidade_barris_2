@@ -13,9 +13,7 @@ class AnotacaoRepositoryImpl implements AnotacaoRepository {
   AnotacaoRepositoryImpl(this._datasource);
 
   @override
-  Future<Either<Failure, Unit>> insertAnotacao({
-    required AnotacaoEntity anotacao,
-  }) async {
+  Future<Either<Failure, Unit>> insertAnotacao({required AnotacaoEntity anotacao}) async {
     try {
       final model = anotacao.toModel();
       await _datasource.insertAnotacao(anotacao: model);
@@ -32,9 +30,7 @@ class AnotacaoRepositoryImpl implements AnotacaoRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteAnotacao({
-    required String anotacaoId,
-  }) async {
+  Future<Either<Failure, Unit>> deleteAnotacao({required String anotacaoId}) async {
     try {
       await _datasource.deleteAnotacao(anotacaoId: anotacaoId);
       return const Right(unit);
@@ -69,9 +65,7 @@ class AnotacaoRepositoryImpl implements AnotacaoRepository {
   }
 
   @override
-  Future<Either<Failure, AnotacaoEntity?>> getAnotacao({
-    required String anotacaoId,
-  }) async {
+  Future<Either<Failure, AnotacaoEntity?>> getAnotacao({required String anotacaoId}) async {
     try {
       final result = await _datasource.getAnotacao(anotacaoId: anotacaoId);
 
@@ -91,9 +85,7 @@ class AnotacaoRepositoryImpl implements AnotacaoRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateAnotacao({
-    required AnotacaoEntity anotacao,
-  }) async {
+  Future<Either<Failure, Unit>> updateAnotacao({required AnotacaoEntity anotacao}) async {
     try {
       final model = anotacao.toModel();
       await _datasource.updateAnotacao(anotacao: model);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rastreabilidade_barris/core/common/screens/splashscreen/splash_screen.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/domain/entity/anotacao_entity.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/editaranotacao/editar_anotacao_screen.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/inseriranotacoes/inserir_anotacoes_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/cadastro/cadastro_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/configuracoes/configuracoes_screen.dart';
@@ -216,9 +218,21 @@ class AppRoutes {
       builder: (context, state) {
         final producao = state.extra as ProducaoEntity?;
         if (producao == null) {
-          return const Scaffold(body: Center(child: Text('Item não encontrado - Editar Grade')));
+          return const Scaffold(body: Center(child: Text('Produção não encontrada')));
         }
         return InserirAnotacoesScreen(producao: producao);
+      },
+    ),
+
+    // Editar Anotação
+    GoRoute(
+      path: AppRoutesNames.editarAnotacao,
+      builder: (context, state) {
+        final anotacao = state.extra as AnotacaoEntity?;
+        if (anotacao == null) {
+          return const Scaffold(body: Center(child: Text('Anotação não Encontrada')));
+        }
+        return EditarAnotacaoScreen(anotacao: anotacao);
       },
     ),
 
