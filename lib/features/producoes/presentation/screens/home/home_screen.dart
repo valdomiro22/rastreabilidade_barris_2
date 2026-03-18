@@ -83,8 +83,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     required BuildContext context,
     required ({String producaoId, String? gradeId}) parametros,
   }) {
-    // final contadorState = ref.watch(anotacaoProvider(producaoId: producao.id!));
-    final contadorState = ref.watch(streamAnotacaoProvider(producaoId: producao.id!));
+    final anotacoesState = ref.watch(streamAnotacaoProvider(producaoId: producao.id!));
+    final contador = anotacoesState.requireValue.length;
 
     return SafeArea(
       child: Container(
@@ -92,11 +92,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: Column(
           children: [
             // Cabeçalho
-            CabecalhoContadorAnotacoes(qt: 293),
+            CabecalhoContadorAnotacoes(qt: contador),
             const SizedBox(height: 16),
 
             Expanded(
-              child: contadorState.when(
+              child: anotacoesState.when(
                 error: (error, stackTrace) => Center(child: Text('Erro: $error')),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 data: (lista) {

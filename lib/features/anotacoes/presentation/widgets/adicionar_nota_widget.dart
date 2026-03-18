@@ -116,13 +116,6 @@ class AdicionarNotaWidget extends ConsumerWidget {
                         // ref.invalidate(buscarQtHorariaProvider());
 
                         if (context.mounted) context.pop();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Adicionou'),
-                            duration: Duration(seconds: 2),
-                            behavior: SnackBarBehavior.floating,
-                          ),
-                        );
                       },
                       style: ElevatedButton.styleFrom(backgroundColor: AppColors.primaryRed),
                       child: const Text('Adicionar', style: TextStyle(color: Colors.white)),

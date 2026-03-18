@@ -64,12 +64,12 @@ class _ItemAnotacaoWidgetState extends ConsumerState<ItemAnotacaoWidget> {
             return AlertDialog(
               title: Row(
                 children: [
-                  Icon(Icons.warning, color: AppColors.primaryRed),
-                  SizedBox(width: 16),
-                  Text('Alerta!', style: TextStyle(color: AppColors.primaryDarkText)),
+                  // Icon(Icons.warning, color: AppColors.primaryRed),
+                  // SizedBox(width: 16),
+                  Text('⚠️ Alerta!', style: TextStyle(color: AppColors.primaryDarkText)),
                 ],
               ),
-              content: Text('Quer mesmo deletar?'),
+              content: Text('Esta ação não pode ser revertida. Você realmente deseja deletar esta anotação?'),
               actions: [
                 ElevatedButton(
                   onPressed: () {
