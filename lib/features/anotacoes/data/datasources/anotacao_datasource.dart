@@ -9,5 +9,5 @@ abstract class AnotacaoDatasource {
 
   Future<void> deleteAnotacao({required String anotacaoId});
 
-  Future<List<AnotacaoModel>> getAllAnotacoes({required String producaoId});
+  Stream<List<AnotacaoModel>> streamAnotacoesDaProducao({required String producaoId});
 }

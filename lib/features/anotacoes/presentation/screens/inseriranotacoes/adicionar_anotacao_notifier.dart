@@ -1,6 +1,6 @@
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/anotacao_notifier.dart';
+import 'package:rastreabilidade_barris/core/di/usecasesproviders/anotacao_use_cases.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../grades/domain/enums/turno.dart';
@@ -52,14 +52,12 @@ class AdicionarAnotacaoNotifier extends _$AdicionarAnotacaoNotifier {
       tipoCodigo: tipoCodigo,
     );
 
-    try {
-      await ref
-          .read(anotacaoProvider(producaoId: producaoId).notifier)
-          .adicionar(anotacao: anotacao);
-      state = state.copyWith(isLoading: false, isSucess: true);
-    } catch (e) {
-      state = state.copyWith(isLoading: false, erro: e.toString());
-    }
+    final useCase = ref.read(insertAnotacaoUseCaseProvider);
+    final result = await useCase(anotacao: anotacao);
+    result.fold(
+      (failure) => state = state.copyWith(isLoading: false, erro: failure.message),
+      (_) => state = state.copyWith(isLoading: false, isSucess: true),
+    );
   }
 
   Future<void> lerCodigoBarras({required String gradeId, required String producaoId}) async {

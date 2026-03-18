@@ -68,45 +68,45 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
   }
 
   @override
-  Future<List<AnotacaoModel>> getAllAnotacoes({required String producaoId}) async {
-    // dev.log('producaoId recebido: $producaoId');
+  Stream<List<AnotacaoModel>> streamAnotacoesDaProducao({required String producaoId}) {
+    return _firestore
+        .collection(_anotacoesCollection)
+        .where('producaoId', isEqualTo: producaoId)
+        .orderBy('data', descending: true)
+        .orderBy('horario', descending: true)
+        .snapshots()
+        .map((snapshot) {
+          if (snapshot.docs.isEmpty) return <AnotacaoModel>[];
 
-    try {
-      final snapshot = await _firestore
-          .collection(_anotacoesCollection)
-          .where('producaoId', isEqualTo: producaoId)
-          .orderBy('data', descending: true)
-          .orderBy('horario', descending: true)
-          .get();
-
-      if (snapshot.docs.isEmpty) return [];
-
-      return snapshot.docs.map((doc) => AnotacaoModel.fromJson(doc.data())).toList();
-    } on FirebaseException catch (e) {
-      switch (e.code) {
-        case 'permission-denied':
-          throw FirestoreException('Permissão negada para ler os anotacao');
-        case 'unavailable':
-        case 'failed-precondition':
-          throw FirestoreException(
-            'Índice composto necessário para esta consulta. Crie o índice no Firebase Console usando o link do log: ${e.message}',
-          );
-        case 'deadline-exceeded':
-          throw NetworkException('Problema de conexão ou serviço indisponível');
-        case 'resource-exhausted':
-          throw UnexpectedException('Limite de quota do Firestore excedido');
-        case 'unauthenticated':
-          throw AuthException('Usuário não autenticado');
-        case 'invalid-argument':
-          throw FirestoreException('Argumentos inválidos na consulta');
-        default:
-          throw FirestoreException(e.message ?? 'Erro ao buscar dados: ${e.code}');
-      }
-    } catch (e) {
-      throw UnexpectedException(
-        'datasource -> Erro inesperado ao buscar anotacoes: ${e.toString()}',
-      );
-    }
+          return snapshot.docs.map((doc) => AnotacaoModel.fromJson(doc.data())).toList();
+        })
+        .handleError((error) {
+          if (error is FirebaseException) {
+            switch (error.code) {
+              case 'permission-denied':
+                throw FirestoreException('Permissão negada para ler as anotações');
+              case 'unavailable':
+              case 'failed-precondition':
+                throw FirestoreException(
+                  'Índice composto necessário para esta consulta. Crie o índice no Firebase Console usando o link do log: ${error.message}',
+                );
+              case 'deadline-exceeded':
+                throw NetworkException('Problema de conexão ou serviço indisponível');
+              case 'resource-exhausted':
+                throw UnexpectedException('Limite de quota do Firestore excedido');
+              case 'unauthenticated':
+                throw AuthException('Usuário não autenticado');
+              case 'invalid-argument':
+                throw FirestoreException('Argumentos inválidos na consulta');
+              default:
+                throw FirestoreException(error.message ?? 'Erro ao buscar dados: ${error.code}');
+            }
+          } else {
+            throw UnexpectedException(
+              'datasource -> Erro inesperado ao buscar anotações: ${error.toString()}',
+            );
+          }
+        });
   }
 
   @override

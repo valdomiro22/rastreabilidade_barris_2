@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'anotacao_notifier.dart';
+part of 'stream_anotacao_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,39 +9,41 @@ part of 'anotacao_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(AnotacaoNotifier)
-final anotacaoProvider = AnotacaoNotifierFamily._();
+@ProviderFor(StreamAnotacaoNotifier)
+final streamAnotacaoProvider = StreamAnotacaoNotifierFamily._();
 
-final class AnotacaoNotifierProvider
-    extends $AsyncNotifierProvider<AnotacaoNotifier, List<AnotacaoEntity>> {
-  AnotacaoNotifierProvider._({
-    required AnotacaoNotifierFamily super.from,
+final class StreamAnotacaoNotifierProvider
+    extends
+        $StreamNotifierProvider<StreamAnotacaoNotifier, List<AnotacaoEntity>> {
+  StreamAnotacaoNotifierProvider._({
+    required StreamAnotacaoNotifierFamily super.from,
     required String super.argument,
   }) : super(
          retry: null,
-         name: r'anotacaoProvider',
+         name: r'streamAnotacaoProvider',
          isAutoDispose: true,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
 
   @override
-  String debugGetCreateSourceHash() => _$anotacaoNotifierHash();
+  String debugGetCreateSourceHash() => _$streamAnotacaoNotifierHash();
 
   @override
   String toString() {
-    return r'anotacaoProvider'
+    return r'streamAnotacaoProvider'
         ''
         '($argument)';
   }
 
   @$internal
   @override
-  AnotacaoNotifier create() => AnotacaoNotifier();
+  StreamAnotacaoNotifier create() => StreamAnotacaoNotifier();
 
   @override
   bool operator ==(Object other) {
-    return other is AnotacaoNotifierProvider && other.argument == argument;
+    return other is StreamAnotacaoNotifierProvider &&
+        other.argument == argument;
   }
 
   @override
@@ -50,38 +52,40 @@ final class AnotacaoNotifierProvider
   }
 }
 
-String _$anotacaoNotifierHash() => r'f501912890a53fb29190ea4aaf4666a0148df7c9';
+String _$streamAnotacaoNotifierHash() =>
+    r'811fa2f9246a54026464f974b3c5a3c2ddbc9233';
 
-final class AnotacaoNotifierFamily extends $Family
+final class StreamAnotacaoNotifierFamily extends $Family
     with
         $ClassFamilyOverride<
-          AnotacaoNotifier,
+          StreamAnotacaoNotifier,
           AsyncValue<List<AnotacaoEntity>>,
           List<AnotacaoEntity>,
-          FutureOr<List<AnotacaoEntity>>,
+          Stream<List<AnotacaoEntity>>,
           String
         > {
-  AnotacaoNotifierFamily._()
+  StreamAnotacaoNotifierFamily._()
     : super(
         retry: null,
-        name: r'anotacaoProvider',
+        name: r'streamAnotacaoProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
         isAutoDispose: true,
       );
 
-  AnotacaoNotifierProvider call({required String producaoId}) =>
-      AnotacaoNotifierProvider._(argument: producaoId, from: this);
+  StreamAnotacaoNotifierProvider call({required String producaoId}) =>
+      StreamAnotacaoNotifierProvider._(argument: producaoId, from: this);
 
   @override
-  String toString() => r'anotacaoProvider';
+  String toString() => r'streamAnotacaoProvider';
 }
 
-abstract class _$AnotacaoNotifier extends $AsyncNotifier<List<AnotacaoEntity>> {
+abstract class _$StreamAnotacaoNotifier
+    extends $StreamNotifier<List<AnotacaoEntity>> {
   late final _$args = ref.$arg as String;
   String get producaoId => _$args;
 
-  FutureOr<List<AnotacaoEntity>> build({required String producaoId});
+  Stream<List<AnotacaoEntity>> build({required String producaoId});
   @$mustCallSuper
   @override
   void runBuild() {

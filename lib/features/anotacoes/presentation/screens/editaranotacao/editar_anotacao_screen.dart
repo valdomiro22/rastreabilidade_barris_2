@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rastreabilidade_barris/core/common/widgets/carregando_widget.dart';
 import 'package:rastreabilidade_barris/core/common/widgets/mensagem_erro_widget.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/editaranotacao/editar_anotacao_notifier.dart';
-import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/anotacao_notifier.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../domain/entity/anotacao_entity.dart';

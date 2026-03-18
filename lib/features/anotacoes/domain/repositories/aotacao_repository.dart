@@ -11,5 +11,5 @@ abstract class AnotacaoRepository {
 
   Future<Either<Failure, Unit>> deleteAnotacao({required String anotacaoId});
 
-  Future<Either<Failure, List<AnotacaoEntity>>> getAllAnotacoes({required String producaoId});
+  Stream<List<AnotacaoEntity>> streamAnotacoesDaProducao({required String producaoId});
 }

@@ -46,22 +46,11 @@ class AnotacaoRepositoryImpl implements AnotacaoRepository {
   }
 
   @override
-  Future<Either<Failure, List<AnotacaoEntity>>> getAllAnotacoes({
+  Stream<List<AnotacaoEntity>> streamAnotacoesDaProducao({
     required String producaoId,
-  }) async {
-    try {
-      final result = await _datasource.getAllAnotacoes(producaoId: producaoId);
-      final listEntities = result.map((nota) => nota.toEntity()).toList();
-      return Right(listEntities);
-    } on FirestoreException catch (e) {
-      return Left(FirestoreFailure(e.message));
-    } on NetworkException catch (e) {
-      return Left(NetworkFailure(e.message));
-    } on CacheException catch (e) {
-      return Left(CacheFailure(e.message));
-    } catch (e) {
-      return Left(UnexpectedFailure('Erro inesperado ao inserir producao: $e'));
-    }
+  }) {
+    return _datasource.streamAnotacoesDaProducao(producaoId: producaoId)
+    .map((models) => models.map((m) => m.toEntity()).toList());
   }
 
   @override

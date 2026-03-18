@@ -105,53 +105,53 @@ final class DeleteAnotacaoUseCaseProvider
 String _$deleteAnotacaoUseCaseHash() =>
     r'65cfba788f34d52d9646f44b265baf0549c62fda';
 
-@ProviderFor(getAllAnotacoesUseCase)
-final getAllAnotacoesUseCaseProvider = GetAllAnotacoesUseCaseProvider._();
+@ProviderFor(streamAnotacoesUseCase)
+final streamAnotacoesUseCaseProvider = StreamAnotacoesUseCaseProvider._();
 
-final class GetAllAnotacoesUseCaseProvider
+final class StreamAnotacoesUseCaseProvider
     extends
         $FunctionalProvider<
-          GetAllAnotacoesUseCase,
-          GetAllAnotacoesUseCase,
-          GetAllAnotacoesUseCase
+          StreamAnotacoesUseCase,
+          StreamAnotacoesUseCase,
+          StreamAnotacoesUseCase
         >
-    with $Provider<GetAllAnotacoesUseCase> {
-  GetAllAnotacoesUseCaseProvider._()
+    with $Provider<StreamAnotacoesUseCase> {
+  StreamAnotacoesUseCaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'getAllAnotacoesUseCaseProvider',
+        name: r'streamAnotacoesUseCaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$getAllAnotacoesUseCaseHash();
+  String debugGetCreateSourceHash() => _$streamAnotacoesUseCaseHash();
 
   @$internal
   @override
-  $ProviderElement<GetAllAnotacoesUseCase> $createElement(
+  $ProviderElement<StreamAnotacoesUseCase> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  GetAllAnotacoesUseCase create(Ref ref) {
-    return getAllAnotacoesUseCase(ref);
+  StreamAnotacoesUseCase create(Ref ref) {
+    return streamAnotacoesUseCase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GetAllAnotacoesUseCase value) {
+  Override overrideWithValue(StreamAnotacoesUseCase value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<GetAllAnotacoesUseCase>(value),
+      providerOverride: $SyncValueProvider<StreamAnotacoesUseCase>(value),
     );
   }
 }
 
-String _$getAllAnotacoesUseCaseHash() =>
-    r'd783351491f63aaed21ff3349751f5b732971414';
+String _$streamAnotacoesUseCaseHash() =>
+    r'f27b08c5d9ac61dc3a3e12d23f4dbbd7143df025';
 
 @ProviderFor(getAnotacaoUseCase)
 final getAnotacaoUseCaseProvider = GetAnotacaoUseCaseProvider._();

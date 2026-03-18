@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/anotacoes/domain/usecases/delete_anotacao_use_case.dart';
-import '../../../features/anotacoes/domain/usecases/get_all_anotacoes_use_case.dart';
+import '../../../features/anotacoes/domain/usecases/stream_anotacoes_use_case.dart';
 import '../../../features/anotacoes/domain/usecases/get_anotacao_use_case.dart';
 import '../../../features/anotacoes/domain/usecases/insert_anotacao_use_case.dart';
 import '../../../features/anotacoes/domain/usecases/update_anotacao_use_case.dart';
@@ -22,9 +22,9 @@ DeleteAnotacaoUseCase deleteAnotacaoUseCase(Ref ref) {
 }
 
 @riverpod
-GetAllAnotacoesUseCase getAllAnotacoesUseCase(Ref ref) {
+StreamAnotacoesUseCase streamAnotacoesUseCase(Ref ref) {
   final repository = ref.watch(anotacaoRepositoryProvider);
-  return GetAllAnotacoesUseCase(repository);
+  return StreamAnotacoesUseCase(repository);
 }
 
 @riverpod

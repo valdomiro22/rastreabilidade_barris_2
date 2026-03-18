@@ -42,7 +42,7 @@ final class EditarAnotacaoNotifierProvider
 }
 
 String _$editarAnotacaoNotifierHash() =>
-    r'ce4fcf6f1c81b4c9886055d21db9133c6bb31f5c';
+    r'7633a36f0fac35c68910c55033590e660c050693';
 
 abstract class _$EditarAnotacaoNotifier extends $Notifier<EditarAnotacaoState> {
   EditarAnotacaoState build();

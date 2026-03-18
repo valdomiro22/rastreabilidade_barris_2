@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/domain/enums/tipo_codigo.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/inseriranotacoes/adicionar_anotacao_notifier.dart';
-import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/anotacao_notifier.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/stream_anotacao_notifier.dart';
 import 'package:rastreabilidade_barris/features/producoes/presentation/providers/producao_notifier.dart';
 
 import '../../../../../core/theme/app_colors.dart';
@@ -25,24 +25,20 @@ class InserirAnotacoesScreen extends ConsumerStatefulWidget {
 
 class _InserirAnotacoesScreenState extends ConsumerState<InserirAnotacoesScreen> {
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(anotacaoProvider(producaoId: widget.producao.id!));
-    });
-  }
-
-  void _atualizarProducao(String gId, String pId) {
-    final producao = ref.read(producaoProvider(gradeId: gId).notifier);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     ref.read(anotacaoProvider(producaoId: widget.producao.id!));
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     final producaoId = widget.producao.id;
     final adicionarState = ref.watch(adicionarAnotacaoProvider);
     final adicionarNotifier = ref.watch(adicionarAnotacaoProvider.notifier);
-    final anotacaoState = ref.watch(anotacaoProvider(producaoId: widget.producao.id!));
+    // final anotacaoState = ref.watch(anotacaoProvider(producaoId: widget.producao.id!));
 
     return Scaffold(
       appBar: AppBar(title: Text('Anotações')),

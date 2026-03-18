@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rastreabilidade_barris/core/di/usecasesproviders/anotacao_use_cases.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/domain/entity/anotacao_entity.dart';
-import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/anotacao_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'editar_anotacao_notifier.g.dart';
@@ -29,14 +29,12 @@ class EditarAnotacaoNotifier extends _$EditarAnotacaoNotifier {
       return;
     }
 
-    try {
-      ref
-          .read(anotacaoProvider(producaoId: anotacao.producaoId).notifier)
-          .atualizar(anotacao: notaAtualizada);
-      state = state.copyWith(isLoading: false, isSucess: true);
-    } catch (e) {
-      state = state.copyWith(isLoading: false, erro: e.toString());
-    }
+    final useCase = ref.read(updateAnotacaoUseCaseProvider);
+    final result = await useCase(anotacao: notaAtualizada);
+    result.fold(
+      (failure) => state = state.copyWith(isLoading: false, erro: failure.message),
+      (_) => state = state.copyWith(isLoading: false, isSucess: true),
+    );
   }
 
   AnotacaoEntity _apenasCodigo(AnotacaoEntity anotacao) {

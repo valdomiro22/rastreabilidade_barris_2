@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/anotacao_notifier.dart';
+import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/stream_anotacao_notifier.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/adicionar_nota_widget.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/cabecalho_contador_anotacoes.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/item_anotacao_widget.dart';
@@ -83,7 +83,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     required BuildContext context,
     required ({String producaoId, String? gradeId}) parametros,
   }) {
-    final contadorState = ref.watch(anotacaoProvider(producaoId: producao.id!));
+    // final contadorState = ref.watch(anotacaoProvider(producaoId: producao.id!));
+    final contadorState = ref.watch(streamAnotacaoProvider(producaoId: producao.id!));
 
     return SafeArea(
       child: Container(
