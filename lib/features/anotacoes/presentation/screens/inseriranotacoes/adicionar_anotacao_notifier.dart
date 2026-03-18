@@ -1,9 +1,11 @@
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rastreabilidade_barris/core/di/usecasesproviders/anotacao_use_cases.dart';
+import 'package:rastreabilidade_barris/core/utils/string_util.dart';
+import 'package:rastreabilidade_barris/features/autenticacao/presentation/buscarusuario/buscar_usuario_notifier.dart';
+import 'package:rastreabilidade_barris/features/producoes/presentation/screens/home/selecionar_turno_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../grades/domain/enums/turno.dart';
 import '../../../domain/entity/anotacao_entity.dart';
 import '../../../domain/enums/tipo_codigo.dart';
 
@@ -34,26 +36,27 @@ class AdicionarAnotacaoNotifier extends _$AdicionarAnotacaoNotifier {
     }
 
     state = state.copyWith(isLoading: true, erro: null);
+    final usuario = await ref.read(buscarUsuarioProvider.future);
+    final turno = ref.read(selecionarTurnoProvider);
+    final horario = StringUtil.formatarHoraSincrona(DateTime.now().toIso8601String());
+    final horarioId = horario.replaceAll(':', '').substring(0, 4);
 
     final anotacao = AnotacaoEntity(
       gradeId: gradeId,
       producaoId: producaoId,
       codigo: codigoFinal,
-      usuarioId: 'usuarioId',
-      // TODO: Injetar via AuthProvider
-      nomeUsuario: 'nomeUsuario',
-      // TODO: Injetar via AuthProvider
-      turno: Turno.turnoA,
-      // TODO: Calcular turno real
+      usuarioId: usuario.id!,
+      nomeUsuario: usuario.nome,
+      turno: turno.turno,
       data: DateTime.now(),
       horario: DateTime.now(),
-      horarioId: 1500,
-      // TODO: Calcular id real
+      horarioId: int.parse(horarioId),
       tipoCodigo: tipoCodigo,
     );
 
     final useCase = ref.read(insertAnotacaoUseCaseProvider);
     final result = await useCase(anotacao: anotacao);
+
     result.fold(
       (failure) => state = state.copyWith(isLoading: false, erro: failure.message),
       (_) => state = state.copyWith(isLoading: false, isSucess: true),

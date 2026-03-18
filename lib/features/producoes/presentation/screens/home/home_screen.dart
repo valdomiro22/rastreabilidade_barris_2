@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rastreabilidade_barris/core/theme/app_colors.dart';
+import 'package:rastreabilidade_barris/core/utils/string_util.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/domain/entity/anotacao_entity.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/screens/providers/stream_anotacao_notifier.dart';
 import 'package:rastreabilidade_barris/features/anotacoes/presentation/widgets/adicionar_nota_widget.dart';
@@ -85,7 +87,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     required ({String producaoId, String? gradeId}) parametros,
   }) {
     final anotacoesState = ref.watch(streamAnotacaoProvider(producaoId: producao.id!));
-    final contador = anotacoesState.valueOrNull?.length ?? 0;
+    // final contador = anotacoesState.valueOrNull?.length ?? 0;
+    final contador = anotacoesState.value?.length ?? 0;
 
     return SafeArea(
       child: Container(
@@ -104,7 +107,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   return ListView.builder(
                     itemCount: lista.length,
                     itemBuilder: (context, index) {
-                      return ItemAnotacaoWidget(anotacao: lista[index]);
+                      return GestureDetector(
+                        child: ItemAnotacaoWidget(anotacao: lista[index]),
+                        onTap: () => _infoAnotacao(
+                          producao: producao,
+                          context: context,
+                          anotacao: lista[index],
+                        ),
+                      );
                     },
                   );
                 },
@@ -121,6 +131,67 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
-extension on AsyncValue<List<AnotacaoEntity>> {
-  get valueOrNull => null;
+void _infoAnotacao({
+  required BuildContext context,
+  required ProducaoEntity producao,
+  required AnotacaoEntity anotacao,
+}) {
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (BuildContext context) {
+      final nomeUsuario = anotacao.nomeUsuario;
+      final horario = StringUtil.formatarHoraSincrona(anotacao.horario.toIso8601String());
+      final data = StringUtil.formatarData(anotacao.data.toIso8601String());
+      // final producaoExibicao = '${producao?.descricao} - $data';
+      final turno = anotacao.turno.label;
+      String observacao = '';
+      if (anotacao.observacao != null && anotacao.observacao != '') {
+        observacao = anotacao.observacao!.length > 30
+            ? '${anotacao.observacao!.substring(0, 27)}...'
+            : anotacao.observacao ?? '';
+      }
+
+      return AlertDialog(
+        title: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(vertical: 5),
+          decoration: BoxDecoration(
+            color: AppColors.secondaryRed,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(anotacao.codigo, style: TextStyle(color: Colors.white)),
+        ),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Text('producao: $producaoExibicao'),
+            Text('producao: ${StringUtil.formatarData(producao.dataCriacao?.toIso8601String())}'),
+            Divider(),
+            Text('Criada por: $nomeUsuario'),
+            Divider(),
+            Text('Turno: $turno'),
+            Divider(),
+            Text('Data: $data'),
+            Divider(),
+            Text('Horario: $horario'),
+            Divider(),
+            Text('Fonte do código: ${anotacao.tipoCodigo.label}'),
+            Divider(),
+            Text('Obs: ${observacao.isNotEmpty ? observacao : 'Sem observação'}'),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            style: TextButton.styleFrom(backgroundColor: AppColors.secondaryRed),
+            child: const Text('OK', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      );
+    },
+  );
 }
