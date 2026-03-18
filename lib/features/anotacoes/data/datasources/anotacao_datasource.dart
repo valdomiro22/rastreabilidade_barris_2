@@ -1,3 +1,5 @@
+import 'package:rastreabilidade_barris/features/grades/domain/enums/turno.dart';
+
 import '../models/anotacao_model.dart';
 
 abstract class AnotacaoDatasource {

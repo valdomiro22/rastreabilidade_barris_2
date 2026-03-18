@@ -45,7 +45,7 @@ class StringUtil {
     return data.replaceAll('/', '.');
   }
 
-  static formatarHora(String data) async {
+  static Future<String> formatarHora(String data) async {
     await date_local_data.initializeDateFormatting('pt_BR');
     final formatador = DateFormat.Hms('pt_br');
 
@@ -65,5 +65,23 @@ class StringUtil {
       return '';
     }
     return '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
+  }
+
+  static DateTime hojeSemHorario() {
+    final dataCompleta = DateTime.now();
+    final dataSemHora = DateTime(dataCompleta.year, dataCompleta.month, dataCompleta.day);
+    return dataSemHora;
+  }
+
+  static DateTime agoraSemData() {
+    final dataCompleta = DateTime.now();
+    final horarioSemData = DateTime(dataCompleta.hour, dataCompleta.minute, dataCompleta.second);
+    return horarioSemData;
+  }
+
+  static DateTime agoraSemSegundos() {
+    final dataCompleta = DateTime.now();
+    final horarioSemSegundos = DateTime(dataCompleta.hour, dataCompleta.minute);
+    return horarioSemSegundos;
   }
 }

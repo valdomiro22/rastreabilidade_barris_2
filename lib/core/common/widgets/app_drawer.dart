@@ -106,14 +106,6 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
               context.push(AppRoutesNames.listaGrades);
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.list, color: AppColors.red900),
-            title: const Text('Cacular tempo parada'),
-            onTap: () {
-              context.pop();
-              context.push(AppRoutesNames.calculadoraTempoParadas);
-            },
-          ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.exit_to_app, color: AppColors.red900),

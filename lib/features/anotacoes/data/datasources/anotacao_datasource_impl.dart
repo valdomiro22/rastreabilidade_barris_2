@@ -1,6 +1,7 @@
 import 'dart:developer' as dev;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rastreabilidade_barris/features/grades/domain/enums/turno.dart';
 
 import '../../../../core/error/exception.dart';
 import '../models/anotacao_model.dart';
@@ -172,4 +173,5 @@ class AnotacaoDatasourceImpl implements AnotacaoDatasource {
       throw UnexpectedException('Erro inesperado ao atualizar anotacao: ${e.toString()}');
     }
   }
+
 }

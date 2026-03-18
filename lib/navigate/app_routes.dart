@@ -27,7 +27,6 @@ import '../features/producoes/domain/entities/producao_entity.dart';
 import '../features/producoes/presentation/screens/adicionar_producao/adicionar_producao_screen.dart';
 import '../features/producoes/presentation/screens/home/home_screen.dart';
 import '../features/producoes/presentation/screens/lista_producoes/lista_producoes_screen.dart';
-import '../features/producoes/presentation/screens/producaoporturno/producao_por_turno_screen.dart';
 import '../features/producoes/presentation/widgets/selecionar_producao_widget.dart';
 import '../features/produto/presentation/screens/adicionartipoproduto/adicionar_produto_screen.dart';
 import '../features/produto/presentation/screens/listatipoproduto/lista_produto_screen.dart';
@@ -47,8 +46,6 @@ class AppRoutes {
     GoRoute(path: AppRoutesNames.listaBarris, builder: (context, state) => ListaTipoBarrilScreen()),
     GoRoute(path: AppRoutesNames.listaProdutos, builder: (context, state) => ListaProdutoScreen()),
     GoRoute(path: AppRoutesNames.insertBarrilProduto, builder: (context, state) => AdicionarBarriProdutoScreen()),
-    // GoRoute(path: AppRoutesNames.inserirNivelBuffer, builder: (context, state) => InserirNivelBufferScreen()),
-    // GoRoute(path: AppRoutesNames.calculadoraTempoParadas, builder: (context, state) => CalcularTempoParadaScreen()),
 
     // Alterar Nome
     GoRoute(
@@ -162,18 +159,6 @@ class AppRoutes {
     //   }
     //   return AlterarNivelScreen(configuracao: configuracao);
     // }),
-
-    // Produção por Turno
-    GoRoute(
-      path: AppRoutesNames.producaoPorTurno,
-      builder: (context, state) {
-        final params = state.extra as ({String producaoId, String gradeId})?;
-        if (params == null) {
-          return const Scaffold(body: Center(child: Text('Item não encontrado - Produção por turno')));
-        }
-        return ProducaoPorTurnoScreen(producaoId: params.producaoId, gradeId: params.gradeId,);
-      },
-    ),
 
     // Home Screen
     // GoRoute(path: AppRoutesNames.home, builder: (context, state) => HomeScreen()),

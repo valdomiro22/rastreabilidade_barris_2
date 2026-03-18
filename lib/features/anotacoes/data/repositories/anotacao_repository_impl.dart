@@ -46,11 +46,10 @@ class AnotacaoRepositoryImpl implements AnotacaoRepository {
   }
 
   @override
-  Stream<List<AnotacaoEntity>> streamAnotacoesDaProducao({
-    required String producaoId,
-  }) {
-    return _datasource.streamAnotacoesDaProducao(producaoId: producaoId)
-    .map((models) => models.map((m) => m.toEntity()).toList());
+  Stream<List<AnotacaoEntity>> streamAnotacoesDaProducao({required String producaoId}) {
+    return _datasource
+        .streamAnotacoesDaProducao(producaoId: producaoId)
+        .map((models) => models.map((m) => m.toEntity()).toList());
   }
 
   @override

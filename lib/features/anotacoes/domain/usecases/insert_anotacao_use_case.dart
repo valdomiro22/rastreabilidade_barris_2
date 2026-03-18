@@ -18,9 +18,6 @@ class InsertAnotacaoUseCase {
     final idGerado = const Uuid().v4();
     final anotacaoComId = anotacao.copyWith(id: idGerado);
 
-    dev.log('idGerado: $idGerado');
-    dev.log('id na anotacao: ${anotacaoComId.id}');
-
     return await _repository.insertAnotacao(
       anotacao: anotacaoComId,
     );

@@ -1,4 +1,5 @@
 import 'package:barcode_scan2/barcode_scan2.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:rastreabilidade_barris/core/di/usecasesproviders/anotacao_use_cases.dart';
 import 'package:rastreabilidade_barris/core/utils/string_util.dart';
@@ -38,8 +39,10 @@ class AdicionarAnotacaoNotifier extends _$AdicionarAnotacaoNotifier {
     state = state.copyWith(isLoading: true, erro: null);
     final usuario = await ref.read(buscarUsuarioProvider.future);
     final turno = ref.read(selecionarTurnoProvider);
-    final horario = StringUtil.formatarHoraSincrona(DateTime.now().toIso8601String());
-    final horarioId = horario.replaceAll(':', '').substring(0, 4);
+    final horarioSemFiltros = StringUtil.formatarHoraSincrona(DateTime.now().toIso8601String());
+    final horarioId = horarioSemFiltros.replaceAll(':', '').substring(0, 4);
+    final data = StringUtil.hojeSemHorario();
+    print('\n\ndata no notifier: $data\n\n');
 
     final anotacao = AnotacaoEntity(
       gradeId: gradeId,
@@ -48,7 +51,7 @@ class AdicionarAnotacaoNotifier extends _$AdicionarAnotacaoNotifier {
       usuarioId: usuario.id!,
       nomeUsuario: usuario.nome,
       turno: turno.turno,
-      data: DateTime.now(),
+      data: data,
       horario: DateTime.now(),
       horarioId: int.parse(horarioId),
       tipoCodigo: tipoCodigo,

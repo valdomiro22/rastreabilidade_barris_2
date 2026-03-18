@@ -12,7 +12,7 @@ enum Turno {
   turnoC(
       id: 3,
       label: 'Turno C',
-    horarios: {'23h': '23:00', '0h': '00:00', '1hh': '01:00', '2h': '02:00', '3h': '03:00', '4h': '04:00', '5h': '05:00', '6h': '06:00'}
+    horarios: {'23h': '23:00', '0h': '00:00', '1h': '01:00', '2h': '02:00', '3h': '03:00', '4h': '04:00', '5h': '05:00', '6h': '06:00'}
   );
 
   // TODO - procurar um lugar mais expecifico para este enum

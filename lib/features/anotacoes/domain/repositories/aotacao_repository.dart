@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:rastreabilidade_barris/features/grades/domain/enums/turno.dart';
+
 import '../../../../core/error/failure.dart';
 import '../entity/anotacao_entity.dart';
 
