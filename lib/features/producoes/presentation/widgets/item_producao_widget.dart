@@ -38,7 +38,9 @@ class ItemProducaoWidget extends ConsumerWidget {
     final parametrosEditar = (producao: producao, barril: barril, produto: produto);
 
     final nomeProduto = produto?.nome ?? '';
-    final nomeDimencionado = nomeProduto.length > 12 ? '${nomeProduto.substring(0, 9)} ...' : nomeProduto;
+    final nomeDimencionado = nomeProduto.length > 12
+        ? '${nomeProduto.substring(0, 9)} ...'
+        : nomeProduto;
 
     return Card(
       color: AppColors.lightSurface,

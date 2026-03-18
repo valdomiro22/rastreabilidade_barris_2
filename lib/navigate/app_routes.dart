@@ -8,8 +8,11 @@ import 'package:rastreabilidade_barris/features/autenticacao/presentation/screen
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/configuracoes/configuracoes_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/logar/logar_screen.dart';
 import 'package:rastreabilidade_barris/features/autenticacao/presentation/screens/recuperarsenha/recuperar_senha_screen.dart';
+import 'package:rastreabilidade_barris/features/barril/domain/entities/barril_entity.dart';
 import 'package:rastreabilidade_barris/features/grades/presentation/screens/adicionar_grade/adicionar_grade_screen.dart';
 import 'package:rastreabilidade_barris/features/grades/presentation/screens/lista_grades/lista_grades_screen.dart';
+import 'package:rastreabilidade_barris/features/producoes/presentation/screens/editarproducao/editar_producao_screen.dart';
+import 'package:rastreabilidade_barris/features/produto/domain/entities/tipo_produto_entity.dart';
 import '../features/autenticacao/domain/entities/usuario_entity.dart';
 import '../features/autenticacao/presentation/screens/alteraremail/alterar_email_screen.dart';
 import '../features/autenticacao/presentation/screens/alterarnome/alterar_nome_screen.dart';
@@ -236,17 +239,17 @@ class AppRoutes {
       },
     ),
 
-    // // Editar Produção
-    // GoRoute(
-    //   path: AppRoutesNames.editarProducao,
-    //   builder: (context, state) {
-    //     // final producao = state.extra as ProducaoEntity?;
-    //     final params = state.extra as ({ProducaoEntity producao, BarrilEntity barril, ProdutoEntity produto})?;
-    //     if (params == null) {
-    //       return const Scaffold(body: Center(child: Text('Item não encontrado - Editar Grade')));
-    //     }
-    //     return EditarProducaoScreen(producao: params.producao, produto: params.produto, barril: params.barril);
-    //   },
-    // ),
+    // Editar Produção
+    GoRoute(
+      path: AppRoutesNames.editarProducao,
+      builder: (context, state) {
+        // final producao = state.extra as ProducaoEntity?;
+        final params = state.extra as ({ProducaoEntity producao, BarrilEntity barril, ProdutoEntity produto})?;
+        if (params == null) {
+          return const Scaffold(body: Center(child: Text('Editar Produção não encotrada')));
+        }
+        return EditarProducaoScreen(producao: params.producao, produto: params.produto, barril: params.barril);
+      },
+    ),
   ];
 }

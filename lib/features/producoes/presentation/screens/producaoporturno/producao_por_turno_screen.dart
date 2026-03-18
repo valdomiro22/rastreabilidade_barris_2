@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rastreabilidade_barris/features/producoes/presentation/widgets/container_status_producao.dart';
 
 import '../../../../../core/constants/app_dimens.dart';
 import '../../providers/buscar_producao_notifier.dart';
@@ -33,6 +34,9 @@ class _ProducaoPorTurnoScreenState extends ConsumerState<ProducaoPorTurnoScreen>
             padding: EdgeInsets.all(AppDimens.paddingPagina),
             child: Column(
               children: [
+                ContainerStatusProducao(producao: producao),
+                const SizedBox(height: 16),
+
                 SelecaoDeTurnoWidget(producaoId: widget.producaoId),
                 const SizedBox(height: 8),
 
